@@ -1,0 +1,45 @@
+module mux8to1_gate(
+    input I0,
+    input I1,
+    input I2,
+    input I3,
+    input I4,
+    input I5,
+    input I6,
+    input I7,
+    input S0,
+    input S1,
+    input S2,
+    output Y
+);
+
+wire W0, W1;
+wire nS2;
+wire A, B;
+
+mux4to1_gate M1(
+    .I0(I0),
+    .I1(I1),
+    .I2(I2),
+    .I3(I3),
+    .S0(S0),
+    .S1(S1),
+    .Y(W0)
+);
+
+mux4to1_gate M2(
+    .I0(I4),
+    .I1(I5),
+    .I2(I6),
+    .I3(I7),
+    .S0(S0),
+    .S1(S1),
+    .Y(W1)
+);
+
+not(nS2, S2);
+and(A, W0, nS2);
+and(B, W1, S2);
+or(Y, A, B);
+
+endmodule

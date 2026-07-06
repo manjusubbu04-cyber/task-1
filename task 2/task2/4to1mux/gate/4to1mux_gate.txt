@@ -1,0 +1,24 @@
+module mux4to1_gate (
+    input I0,
+    input I1,
+    input I2,
+    input I3,
+    input S0,
+    input S1,
+    output Y
+);
+
+wire nS0, nS1;
+wire w1, w2, w3, w4;
+
+not(nS0, S0);
+not(nS1, S1);
+
+and(w1, nS0, nS1, I0);
+and(w2, nS0,  S1, I1);
+and(w3,  S0, nS1, I2);
+and(w4,  S0,  S1, I3);
+
+or(Y, w1, w2, w3, w4);
+
+endmodule

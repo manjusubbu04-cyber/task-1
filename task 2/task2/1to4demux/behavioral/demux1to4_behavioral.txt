@@ -1,0 +1,34 @@
+module demux1to4_behavioral (
+    
+      input S0,
+      input S1,
+      input I,
+      output reg Y0,
+      output reg Y1,
+      output reg Y2,
+      output reg Y3
+
+);
+
+always @(*)
+
+begin 
+    Y0 = 0;
+    Y1 = 0;
+    Y2 = 0;
+    Y3 = 0;
+   case({S0,S1})
+       2'b00: Y0=I;
+       2'b01: Y1=I;
+       2'b10: Y2=I;
+       2'b11: Y3=I;
+   endcase
+end
+
+endmodule
+
+
+
+
+
+
